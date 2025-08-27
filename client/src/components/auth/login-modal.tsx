@@ -69,7 +69,7 @@ export default function LoginModal() {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-center">
-            Welcome to Desi Etsy
+            Welcome to Fankar
           </DialogTitle>
           <DialogDescription className="text-center">
             Join our community of craft lovers and artisans
