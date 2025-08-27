@@ -1,0 +1,205 @@
+Build a complete React.js frontend application for "Desi Etsy" - a marketplace showcasing Indian handmade products. Focus on creating an engaging, culturally-rich user interface with modern e-commerce functionality.
+
+Frontend Components to Build
+1. Landing Page Components
+Hero section with rotating banner of featured products
+
+Category grid with Indian craft icons (pottery, textiles, jewelry, etc.)
+
+Featured artisans carousel
+
+Testimonials section
+
+Newsletter signup
+
+2. Authentication UI
+Login/Register modal overlays
+
+Multi-step artisan registration form
+
+OTP verification screens
+
+Password reset flow
+
+Social login buttons (Google, Facebook)
+
+3. Product Browsing Interface
+Product grid with hover effects
+
+Filter sidebar with collapsible sections
+
+Search bar with dropdown suggestions
+
+Sort dropdown menu
+
+Pagination component
+
+"Load More" infinite scroll option
+
+4. Product Detail Page
+Image gallery with thumbnails and zoom
+
+Product information cards
+
+Add to cart/wishlist buttons
+
+Quantity selector
+
+Size/variant picker
+
+Reviews and ratings display
+
+Related products section
+
+Artisan info card
+
+5. Shopping Cart UI
+Cart drawer/modal
+
+Item cards with quantity controls
+
+Remove item functionality
+
+Price breakdown display
+
+Checkout button
+
+Empty cart state illustration
+
+6. Checkout Flow
+Step-by-step checkout wizard
+
+Address form components
+
+Order summary card
+
+Payment method selection UI
+
+Razorpay integration components
+
+Order confirmation page
+
+7. User Dashboard Pages
+Customer Dashboard:
+
+Order history cards
+
+Order tracking timeline
+
+Wishlist grid
+
+Profile edit forms
+
+Address management
+
+Artisan Dashboard:
+
+Product management table
+
+Add/edit product forms
+
+Image upload component
+
+Basic sales charts
+
+Order management interface
+
+8. Admin Panel UI
+Sidebar navigation
+
+Artisan verification cards
+
+Product approval queue
+
+User management tables
+
+Basic analytics dashboard
+
+UI/UX Design Requirements
+Visual Design
+Color Palette: Warm Indian colors (saffron #FF9933, deep red #DC143C, gold accents #FFD700)
+
+Typography: Google Fonts - Poppins for modern text, Noto Sans Devanagari for Hindi support
+
+Cultural Elements: Subtle mandala patterns, traditional borders, Indian motifs as decorative elements
+
+Component Styling
+Rounded corners with subtle shadows
+
+Gradient buttons with hover animations
+
+Card-based layout throughout
+
+Traditional Indian patterns as background elements
+
+Loading skeletons with cultural flair
+
+Key Features to Implement
+Interactive Elements
+Image zoom on hover/click
+
+Wishlist heart animation
+
+Cart slide-in drawer
+
+Filter collapse/expand
+
+Smooth page transitions
+
+Loading states for all components
+
+Form Components
+Multi-step forms with progress indicators
+
+Image upload with drag-and-drop
+
+Address autocomplete suggestions
+
+Phone number validation with Indian formats
+
+File upload for artisan documents
+
+Search & Filter UI
+Auto-complete search dropdown
+
+Price range slider
+
+Multi-select filter checkboxes
+
+Location-based filter with map integration
+
+Clear filters functionality
+
+Cultural Elements
+Festival banners and seasonal themes
+
+Regional craft category icons
+
+Traditional color schemes
+
+Indian festival/occasion gift suggestions
+
+Multilingual text preparation (English/Hindi)
+
+Performance Considerations
+Optimization Techniques
+Lazy loading for images and components
+
+Virtual scrolling for large product lists
+
+Debounced search input
+
+Memoized expensive calculations
+
+Code splitting by routes
+
+Progressive Web App features
+
+Loading States
+Skeleton screens for content loading
+
+Shimmer effects for images
+
+Custom Indian-themed loading spinners
+
+Empty state illustrations with cultural touch
