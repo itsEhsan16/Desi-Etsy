@@ -33,7 +33,7 @@ function App() {
       <TooltipProvider>
         <AuthProvider>
           <CartProvider>
-            <div className="min-h-screen bg-background mandala-bg">
+            <div className="min-h-screen bg-background">
               <Header />
               <main>
                 <Router />
