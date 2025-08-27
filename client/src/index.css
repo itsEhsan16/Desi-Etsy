@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(35, 15%, 97%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --primary: hsl(25, 95%, 58%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(349, 69%, 44%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(35, 15%, 92%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --accent: hsl(51, 100%, 50%);
+  --accent-foreground: hsl(20, 14.3%, 4.1%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --ring: hsl(25, 95%, 58%);
+  --chart-1: hsl(25, 95%, 58%);
+  --chart-2: hsl(159, 100%, 36%);
+  --chart-3: hsl(42, 93%, 56%);
+  --chart-4: hsl(147, 79%, 42%);
+  --chart-5: hsl(341, 75%, 51%);
+  --sidebar: hsl(0, 0%, 100%);
+  --sidebar-foreground: hsl(20, 14.3%, 4.1%);
+  --sidebar-primary: hsl(25, 95%, 58%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(35, 15%, 92%);
+  --sidebar-accent-foreground: hsl(25, 95%, 58%);
+  --sidebar-border: hsl(20, 5.9%, 90%);
+  --sidebar-ring: hsl(25, 95%, 58%);
+  --font-sans: 'Poppins', sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: 0.75rem;
+  --shadow-2xs: 0px 2px 0px 0px hsl(25, 95%, 58% / 0.00);
+  --shadow-xs: 0px 2px 0px 0px hsl(25, 95%, 58% / 0.00);
+  --shadow-sm: 0px 2px 0px 0px hsl(25, 95%, 58% / 0.00), 0px 1px 2px -1px hsl(25, 95%, 58% / 0.00);
+  --shadow: 0px 2px 0px 0px hsl(25, 95%, 58% / 0.00), 0px 1px 2px -1px hsl(25, 95%, 58% / 0.00);
+  --shadow-md: 0px 2px 0px 0px hsl(25, 95%, 58% / 0.00), 0px 2px 4px -1px hsl(25, 95%, 58% / 0.00);
+  --shadow-lg: 0px 2px 0px 0px hsl(25, 95%, 58% / 0.00), 0px 4px 6px -1px hsl(25, 95%, 58% / 0.00);
+  --shadow-xl: 0px 2px 0px 0px hsl(25, 95%, 58% / 0.00), 0px 8px 10px -1px hsl(25, 95%, 58% / 0.00);
+  --shadow-2xl: 0px 2px 0px 0px hsl(25, 95%, 58% / 0.00);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --background: hsl(20, 14.3%, 4.1%);
+  --foreground: hsl(35, 15%, 97%);
+  --card: hsl(25, 5.3%, 8%);
+  --card-foreground: hsl(35, 15%, 92%);
+  --popover: hsl(20, 14.3%, 4.1%);
+  --popover-foreground: hsl(35, 15%, 97%);
+  --primary: hsl(25, 95%, 58%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(349, 69%, 44%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(25, 5.3%, 12%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --accent: hsl(51, 100%, 50%);
+  --accent-foreground: hsl(20, 14.3%, 4.1%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(25, 5.3%, 15%);
+  --input: hsl(25, 5.3%, 15%);
+  --ring: hsl(25, 95%, 58%);
+  --sidebar: hsl(25, 5.3%, 8%);
+  --sidebar-foreground: hsl(35, 15%, 92%);
+  --sidebar-primary: hsl(25, 95%, 58%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(25, 5.3%, 12%);
+  --sidebar-accent-foreground: hsl(25, 95%, 58%);
+  --sidebar-border: hsl(25, 5.3%, 15%);
+  --sidebar-ring: hsl(25, 95%, 58%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .mandala-bg {
+    background-image: 
+      radial-gradient(circle at 20% 50%, hsl(25, 95%, 58% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(349, 69%, 44% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsl(51, 100%, 50% / 0.1) 0%, transparent 50%);
+  }
+
+  .gradient-button {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+    transition: all 0.3s ease;
+  }
+
+  .gradient-button:hover {
+    background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--primary)) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px hsl(25, 95%, 58% / 0.3);
+  }
+
+  .cultural-border {
+    border: 2px solid;
+    border-image: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--secondary))) 1;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 1.5s infinite;
+  }
+
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+
+  .category-icon {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
