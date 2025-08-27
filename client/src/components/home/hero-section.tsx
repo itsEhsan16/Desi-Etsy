@@ -36,31 +36,22 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden pt-20">
-      {/* Full background image */}
-      <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-          alt="Beautiful handcrafted pottery"
-          className="w-full h-full object-cover"
-          data-testid="image-hero-background"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40"></div>
-      </div>
-
-      {/* Content overlay */}
-      <div className="relative z-10 h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
-              shine on
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 font-light">
-              beauty that reflects your spirit
-            </p>
+    <section className="relative min-h-screen overflow-hidden pt-20 bg-gradient-to-br from-orange-50 to-amber-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+          {/* Content */}
+          <div className="space-y-8">
+            <div className="space-y-6">
+              <h1 className="text-5xl md:text-7xl font-bold text-foreground leading-tight">
+                shine on
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground font-light">
+                beauty that reflects your spirit
+              </p>
+            </div>
             
             <Button 
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300 rounded-lg px-8 py-3 text-lg"
+              className="bg-transparent border-2 border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 rounded-lg px-8 py-3 text-lg"
               asChild
               data-testid="button-shop-now"
             >
@@ -69,13 +60,28 @@ export default function HeroSection() {
               </Link>
             </Button>
           </div>
+
+          {/* Rounded square image */}
+          <div className="flex justify-center lg:justify-end">
+            <div className="relative">
+              <img
+                src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600"
+                alt="Beautiful handcrafted pottery"
+                className="w-80 h-80 md:w-96 md:h-96 object-cover rounded-3xl shadow-2xl"
+                data-testid="image-hero-main"
+              />
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/20 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-secondary/20 rounded-full blur-xl"></div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/50 rounded-full mt-2"></div>
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-muted-foreground animate-bounce">
+        <div className="w-6 h-10 border-2 border-muted-foreground/50 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-muted-foreground/50 rounded-full mt-2"></div>
         </div>
       </div>
     </section>
