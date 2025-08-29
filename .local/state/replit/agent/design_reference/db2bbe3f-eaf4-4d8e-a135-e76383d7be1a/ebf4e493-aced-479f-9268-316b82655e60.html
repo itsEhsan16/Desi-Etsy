@@ -1,0 +1,1287 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi Etsy - Indian Handmade Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    popover: {
+                        DEFAULT: "var(--popover)",
+                        foreground: "var(--popover-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    destructive: {
+                        DEFAULT: "var(--destructive)",
+                        foreground: "var(--destructive-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                }
+            },
+        }
+    };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --background: hsl(35 15% 97%);
+            --foreground: hsl(20 14.3% 4.1%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(20 14.3% 4.1%);
+            --popover: hsl(0 0% 100%);
+            --popover-foreground: hsl(20 14.3% 4.1%);
+            --primary: hsl(25 95% 58%); /* Saffron #FF9933 */
+            --primary-foreground: hsl(0 0% 100%);
+            --secondary: hsl(349 69% 44%); /* Deep Red #DC143C */
+            --secondary-foreground: hsl(0 0% 100%);
+            --muted: hsl(35 15% 92%);
+            --muted-foreground: hsl(25 5.3% 44.7%);
+            --accent: hsl(51 100% 50%); /* Gold #FFD700 */
+            --accent-foreground: hsl(20 14.3% 4.1%);
+            --destructive: hsl(0 84.2% 60.2%);
+            --destructive-foreground: hsl(0 0% 100%);
+            --border: hsl(20 5.9% 90%);
+            --input: hsl(20 5.9% 90%);
+            --ring: hsl(25 95% 58%);
+            --radius: 0.75rem;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+        }
+
+        .mandala-bg {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 153, 51, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(220, 20, 60, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .gradient-button {
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+            transition: all 0.3s ease;
+        }
+
+        .gradient-button:hover {
+            background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--primary)) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 153, 51, 0.3);
+        }
+
+        .cultural-border {
+            border: 2px solid;
+            border-image: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--secondary))) 1;
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="mandala-bg">
+    <!-- @COMPONENT: Header [navigation with cart, search, user menu] -->
+    <header class="bg-card shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-8">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                            Desi Etsy
+                        </h1>
+                    </div>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">Categories</a>
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">Artisans</a>
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">New Arrivals</a>
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">Gift Ideas</a>
+                    </nav>
+                </div>
+                <div class="flex-1 max-w-lg mx-8">
+                    <!-- @COMPONENT: SearchBar [autocomplete, suggestions dropdown] -->
+                    <div class="relative">
+                        <input type="text" 
+                               placeholder="Search for handmade treasures..." 
+                               data-mock="true"
+                               class="w-full pl-10 pr-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"></i>
+                        <div class="absolute top-full left-0 right-0 bg-card border border-border rounded-lg mt-1 shadow-lg hidden" data-implementation="Show on focus with search suggestions">
+                            <div class="p-2">
+                                <div class="text-sm text-muted-foreground mb-2">Recent searches</div>
+                                <div class="space-y-1" data-mock="true">
+                                    <div class="px-3 py-1 hover:bg-muted rounded cursor-pointer">Handwoven sarees</div>
+                                    <div class="px-3 py-1 hover:bg-muted rounded cursor-pointer">Pottery items</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-muted-foreground hover:text-primary transition-colors" data-event="click:toggleWishlist">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-secondary text-secondary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center" data-bind="wishlist.count">3</span>
+                    </button>
+                    <button class="relative p-2 text-muted-foreground hover:text-primary transition-colors" data-event="click:toggleCart">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center" data-bind="cart.itemCount">2</span>
+                    </button>
+                    <button class="gradient-button text-primary-foreground px-4 py-2 rounded-lg font-medium" data-event="click:showLoginModal">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: HeroSection [rotating banners, featured products] -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+                            Discover
+                            <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                                Authentic
+                            </span>
+                            Indian Crafts
+                        </h1>
+                        <p class="text-xl text-muted-foreground">
+                            Connect with skilled artisans and bring home the beauty of traditional Indian handicrafts, 
+                            handwoven textiles, and timeless pottery.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="gradient-button text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg" data-event="click:browseProducts">
+                            Explore Crafts
+                        </button>
+                        <button class="border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary hover:text-primary-foreground transition-all" data-event="click:becomeArtisan">
+                            Become an Artisan
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-8 text-sm text-muted-foreground">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-truck text-primary"></i>
+                            <span>Free shipping over ₹999</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-shield-alt text-primary"></i>
+                            <span>Authentic guarantee</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <!-- Traditional Indian handicrafts showcase with pottery and textiles -->
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                             alt="Traditional Indian pottery and handicrafts display" 
+                             class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h3 class="text-white text-2xl font-bold mb-2" data-mock="true">Featured Collection</h3>
+                            <p class="text-white/90" data-mock="true">Rajasthani Blue Pottery & Handwoven Textiles</p>
+                        </div>
+                    </div>
+                    <!-- Decorative elements -->
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-xl"></div>
+                    <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/20 rounded-full blur-xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HeroSection -->
+
+    <!-- @COMPONENT: CategoriesGrid [craft categories with icons] -->
+    <section class="py-16 bg-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Explore Our <span class="text-primary">Craft Categories</span>
+                </h2>
+                <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    Discover authentic Indian handicrafts from master artisans across different regions
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- @MAP: categories.map(category => ( -->
+                <div class="bg-background rounded-xl p-6 text-center card-hover cursor-pointer" data-event="click:browseCategory" data-bind="category.id">
+                    <div class="mb-4">
+                        <i class="fas fa-vase category-icon" data-mock="true"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2" data-mock="true">Pottery</h3>
+                    <p class="text-sm text-muted-foreground mb-4" data-mock="true">Traditional clay crafts</p>
+                    <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full" data-bind="category.productCount">124 items</span>
+                </div>
+                
+                <div class="bg-background rounded-xl p-6 text-center card-hover cursor-pointer" data-event="click:browseCategory">
+                    <div class="mb-4">
+                        <i class="fas fa-tshirt category-icon"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2" data-mock="true">Textiles</h3>
+                    <p class="text-sm text-muted-foreground mb-4" data-mock="true">Handwoven fabrics</p>
+                    <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full" data-mock="true">89 items</span>
+                </div>
+                
+                <div class="bg-background rounded-xl p-6 text-center card-hover cursor-pointer" data-event="click:browseCategory">
+                    <div class="mb-4">
+                        <i class="fas fa-gem category-icon"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2" data-mock="true">Jewelry</h3>
+                    <p class="text-sm text-muted-foreground mb-4" data-mock="true">Traditional ornaments</p>
+                    <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full" data-mock="true">156 items</span>
+                </div>
+                
+                <div class="bg-background rounded-xl p-6 text-center card-hover cursor-pointer" data-event="click:browseCategory">
+                    <div class="mb-4">
+                        <i class="fas fa-paint-brush category-icon"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2" data-mock="true">Paintings</h3>
+                    <p class="text-sm text-muted-foreground mb-4" data-mock="true">Traditional art</p>
+                    <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full" data-mock="true">67 items</span>
+                </div>
+                
+                <div class="bg-background rounded-xl p-6 text-center card-hover cursor-pointer" data-event="click:browseCategory">
+                    <div class="mb-4">
+                        <i class="fas fa-home category-icon"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2" data-mock="true">Home Decor</h3>
+                    <p class="text-sm text-muted-foreground mb-4" data-mock="true">Decorative items</p>
+                    <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full" data-mock="true">203 items</span>
+                </div>
+                
+                <div class="bg-background rounded-xl p-6 text-center card-hover cursor-pointer" data-event="click:browseCategory">
+                    <div class="mb-4">
+                        <i class="fas fa-utensils category-icon"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2" data-mock="true">Kitchenware</h3>
+                    <p class="text-sm text-muted-foreground mb-4" data-mock="true">Copper & brass items</p>
+                    <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full" data-mock="true">91 items</span>
+                </div>
+                
+                <div class="bg-background rounded-xl p-6 text-center card-hover cursor-pointer" data-event="click:browseCategory">
+                    <div class="mb-4">
+                        <i class="fas fa-scroll category-icon"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2" data-mock="true">Handicrafts</h3>
+                    <p class="text-sm text-muted-foreground mb-4" data-mock="true">Miscellaneous crafts</p>
+                    <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full" data-mock="true">145 items</span>
+                </div>
+                
+                <div class="bg-background rounded-xl p-6 text-center card-hover cursor-pointer" data-event="click:browseAllCategories">
+                    <div class="mb-4">
+                        <i class="fas fa-plus-circle text-4xl text-muted-foreground"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">View All</h3>
+                    <p class="text-sm text-muted-foreground mb-4">Explore more categories</p>
+                    <span class="text-xs bg-muted text-muted-foreground px-3 py-1 rounded-full">15+ categories</span>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: CategoriesGrid -->
+
+    <!-- @COMPONENT: FeaturedArtisans [carousel of artisan profiles] -->
+    <section class="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Meet Our <span class="text-secondary">Master Artisans</span>
+                </h2>
+                <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    Connect with skilled craftspeople preserving India's rich cultural heritage
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- @MAP: featuredArtisans.map(artisan => ( -->
+                <!-- Skilled Indian pottery artisan working at a traditional wheel -->
+                <div class="bg-card rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-64">
+                        <img src="https://pixabay.com/get/g31ee87e740b5b86820a67a087347bc8344445db8a842a314088fd0014bd3cebe2cd18b5507705b645790c3959543f184e5987a69b4d4204ab30d0d8277e58747_1280.jpg" 
+                             alt="Master potter crafting traditional Indian pottery" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-medium">
+                                <i class="fas fa-star mr-1"></i>4.9
+                            </span>
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <h3 class="text-xl font-bold mb-1" data-mock="true">Ramesh Kumar</h3>
+                            <p class="text-white/90 text-sm" data-mock="true">Master Potter • Rajasthan</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-muted-foreground mb-4" data-mock="true">
+                            "Creating beautiful pottery with 25+ years of experience in traditional techniques."
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-muted-foreground">
+                                <span data-mock="true">67 products</span> • <span data-mock="true">4.9 rating</span>
+                            </div>
+                            <button class="text-primary hover:text-secondary transition-colors font-medium" data-event="click:viewArtisanProfile">
+                                View Profile →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Traditional Indian textile weaver working on handloom -->
+                <div class="bg-card rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400" 
+                             alt="Skilled weaver creating traditional Indian textiles on handloom" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-medium">
+                                <i class="fas fa-star mr-1"></i>4.8
+                            </span>
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <h3 class="text-xl font-bold mb-1" data-mock="true">Priya Devi</h3>
+                            <p class="text-white/90 text-sm" data-mock="true">Textile Weaver • Gujarat</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-muted-foreground mb-4" data-mock="true">
+                            "Handweaving traditional sarees and fabrics using ancestral techniques."
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-muted-foreground">
+                                <span data-mock="true">89 products</span> • <span data-mock="true">4.8 rating</span>
+                            </div>
+                            <button class="text-primary hover:text-secondary transition-colors font-medium" data-event="click:viewArtisanProfile">
+                                View Profile →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Indian jewelry artisan crafting traditional ornaments -->
+                <div class="bg-card rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400" 
+                             alt="Expert jewelry artisan creating traditional Indian ornaments" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-medium">
+                                <i class="fas fa-star mr-1"></i>5.0
+                            </span>
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <h3 class="text-xl font-bold mb-1" data-mock="true">Arjun Sharma</h3>
+                            <p class="text-white/90 text-sm" data-mock="true">Jewelry Artisan • Jaipur</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-muted-foreground mb-4" data-mock="true">
+                            "Crafting exquisite jewelry pieces with traditional Rajasthani artistry."
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-muted-foreground">
+                                <span data-mock="true">45 products</span> • <span data-mock="true">5.0 rating</span>
+                            </div>
+                            <button class="text-primary hover:text-secondary transition-colors font-medium" data-event="click:viewArtisanProfile">
+                                View Profile →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+            <div class="text-center mt-12">
+                <button class="gradient-button text-primary-foreground px-8 py-3 rounded-lg font-semibold" data-event="click:viewAllArtisans">
+                    Discover More Artisans
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: FeaturedArtisans -->
+
+    <!-- @COMPONENT: FeaturedProducts [product grid with filters] -->
+    <section class="py-16 bg-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Filter Sidebar -->
+                <div class="lg:w-1/4">
+                    <!-- @COMPONENT: FilterSidebar [collapsible filter sections] -->
+                    <div class="bg-background rounded-xl p-6 sticky top-24">
+                        <h3 class="text-xl font-bold mb-6">Filters</h3>
+                        
+                        <!-- Price Range -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3">Price Range</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm">₹100</span>
+                                    <span class="text-sm">₹10,000</span>
+                                </div>
+                                <input type="range" min="100" max="10000" class="w-full accent-primary" data-implementation="Price range slider">
+                                <div class="flex gap-2">
+                                    <input type="number" placeholder="Min" class="flex-1 px-3 py-2 border border-border rounded-lg text-sm">
+                                    <input type="number" placeholder="Max" class="flex-1 px-3 py-2 border border-border rounded-lg text-sm">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Categories -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3">Categories</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm">Pottery (124)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-primary" checked>
+                                    <span class="ml-2 text-sm">Textiles (89)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm">Jewelry (156)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm">Home Decor (203)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Region -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3">Region</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm">Rajasthan (45)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm">Gujarat (32)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm">Kashmir (28)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full border border-border text-muted-foreground py-2 rounded-lg hover:bg-muted transition-colors" data-event="click:clearFilters">
+                            Clear All Filters
+                        </button>
+                    </div>
+                    <!-- @END_COMPONENT: FilterSidebar -->
+                </div>
+                
+                <!-- Products Grid -->
+                <div class="lg:w-3/4">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h2 class="text-3xl font-bold mb-2">Featured Products</h2>
+                            <p class="text-muted-foreground" data-bind="products.filteredCount">Showing 1-12 of 847 products</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <select class="px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring" data-event="change:sortProducts">
+                                <option value="featured">Sort by: Featured</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="newest">Newest First</option>
+                                <option value="rating">Highest Rated</option>
+                            </select>
+                            <div class="flex border border-border rounded-lg">
+                                <button class="p-2 bg-primary text-primary-foreground rounded-l-lg" data-event="click:toggleGridView">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="p-2 hover:bg-muted rounded-r-lg" data-event="click:toggleListView">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- @MAP: products.map(product => ( -->
+                        <!-- Elegant traditional Indian pottery vase with intricate patterns -->
+                        <div class="bg-background rounded-xl overflow-hidden shadow-lg card-hover group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                                     alt="Beautiful traditional Indian pottery vase with hand-painted patterns" 
+                                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="bg-white/90 text-red-500 p-2 rounded-full hover:bg-white hover:scale-110 transition-all" data-event="click:toggleWishlist">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-secondary text-secondary-foreground px-2 py-1 rounded-full text-xs font-medium">
+                                        Trending
+                                    </span>
+                                </div>
+                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <button class="gradient-button text-primary-foreground px-4 py-2 rounded-lg font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform" data-event="click:quickView">
+                                        Quick View
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs text-muted-foreground bg-muted px-2 py-1 rounded" data-mock="true">Pottery</span>
+                                    <div class="flex items-center text-sm text-accent">
+                                        <i class="fas fa-star mr-1"></i>
+                                        <span data-bind="product.rating">4.8</span>
+                                        <span class="text-muted-foreground ml-1" data-bind="product.reviewCount">(24)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-semibold mb-2 line-clamp-2" data-bind="product.name" data-mock="true">
+                                    Traditional Blue Pottery Vase
+                                </h3>
+                                <p class="text-sm text-muted-foreground mb-3" data-bind="product.artisan" data-mock="true">
+                                    by Ramesh Kumar
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-lg font-bold text-primary" data-bind="product.price" data-mock="true">₹2,499</span>
+                                        <span class="text-sm text-muted-foreground line-through" data-bind="product.originalPrice" data-mock="true">₹3,199</span>
+                                    </div>
+                                    <button class="bg-primary text-primary-foreground p-2 rounded-lg hover:bg-secondary transition-colors" data-event="click:addToCart">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Colorful traditional Indian textile with intricate weaving -->
+                        <div class="bg-background rounded-xl overflow-hidden shadow-lg card-hover group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                                     alt="Vibrant handwoven Indian textile with traditional patterns and colors" 
+                                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="bg-white/90 text-red-500 p-2 rounded-full hover:bg-white hover:scale-110 transition-all" data-event="click:toggleWishlist">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-accent text-accent-foreground px-2 py-1 rounded-full text-xs font-medium">
+                                        Bestseller
+                                    </span>
+                                </div>
+                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <button class="gradient-button text-primary-foreground px-4 py-2 rounded-lg font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform" data-event="click:quickView">
+                                        Quick View
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs text-muted-foreground bg-muted px-2 py-1 rounded" data-mock="true">Textiles</span>
+                                    <div class="flex items-center text-sm text-accent">
+                                        <i class="fas fa-star mr-1"></i>
+                                        <span data-bind="product.rating">4.9</span>
+                                        <span class="text-muted-foreground ml-1" data-bind="product.reviewCount">(56)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-semibold mb-2 line-clamp-2" data-bind="product.name" data-mock="true">
+                                    Handwoven Banarasi Silk Saree
+                                </h3>
+                                <p class="text-sm text-muted-foreground mb-3" data-bind="product.artisan" data-mock="true">
+                                    by Priya Devi
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-lg font-bold text-primary" data-bind="product.price" data-mock="true">₹12,999</span>
+                                        <span class="text-sm text-muted-foreground line-through" data-bind="product.originalPrice" data-mock="true">₹15,999</span>
+                                    </div>
+                                    <button class="bg-primary text-primary-foreground p-2 rounded-lg hover:bg-secondary transition-colors" data-event="click:addToCart">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Exquisite traditional Indian jewelry with gold and gemstones -->
+                        <div class="bg-background rounded-xl overflow-hidden shadow-lg card-hover group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                                     alt="Stunning traditional Indian jewelry with intricate gold work and precious stones" 
+                                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="bg-white/90 text-red-500 p-2 rounded-full hover:bg-white hover:scale-110 transition-all" data-event="click:toggleWishlist">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">
+                                        Limited
+                                    </span>
+                                </div>
+                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <button class="gradient-button text-primary-foreground px-4 py-2 rounded-lg font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform" data-event="click:quickView">
+                                        Quick View
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs text-muted-foreground bg-muted px-2 py-1 rounded" data-mock="true">Jewelry</span>
+                                    <div class="flex items-center text-sm text-accent">
+                                        <i class="fas fa-star mr-1"></i>
+                                        <span data-bind="product.rating">5.0</span>
+                                        <span class="text-muted-foreground ml-1" data-bind="product.reviewCount">(18)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-semibold mb-2 line-clamp-2" data-bind="product.name" data-mock="true">
+                                    Rajasthani Kundan Necklace Set
+                                </h3>
+                                <p class="text-sm text-muted-foreground mb-3" data-bind="product.artisan" data-mock="true">
+                                    by Arjun Sharma
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-lg font-bold text-primary" data-bind="product.price" data-mock="true">₹8,499</span>
+                                        <span class="text-sm text-muted-foreground line-through" data-bind="product.originalPrice" data-mock="true">₹9,999</span>
+                                    </div>
+                                    <button class="bg-primary text-primary-foreground p-2 rounded-lg hover:bg-secondary transition-colors" data-event="click:addToCart">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ornate traditional Indian home decor with brass and copper -->
+                        <div class="bg-background rounded-xl overflow-hidden shadow-lg card-hover group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                                     alt="Beautiful traditional Indian home decor items made of brass and copper" 
+                                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="bg-white/90 text-red-500 p-2 rounded-full hover:bg-white hover:scale-110 transition-all" data-event="click:toggleWishlist">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <button class="gradient-button text-primary-foreground px-4 py-2 rounded-lg font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform" data-event="click:quickView">
+                                        Quick View
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs text-muted-foreground bg-muted px-2 py-1 rounded" data-mock="true">Home Decor</span>
+                                    <div class="flex items-center text-sm text-accent">
+                                        <i class="fas fa-star mr-1"></i>
+                                        <span data-bind="product.rating">4.7</span>
+                                        <span class="text-muted-foreground ml-1" data-bind="product.reviewCount">(33)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-semibold mb-2 line-clamp-2" data-bind="product.name" data-mock="true">
+                                    Brass Decorative Diya Set
+                                </h3>
+                                <p class="text-sm text-muted-foreground mb-3" data-bind="product.artisan" data-mock="true">
+                                    by Vikram Singh
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-lg font-bold text-primary" data-bind="product.price" data-mock="true">₹1,899</span>
+                                        <span class="text-sm text-muted-foreground line-through" data-bind="product.originalPrice" data-mock="true">₹2,399</span>
+                                    </div>
+                                    <button class="bg-primary text-primary-foreground p-2 rounded-lg hover:bg-secondary transition-colors" data-event="click:addToCart">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Traditional Indian paintings showcasing cultural art -->
+                        <div class="bg-background rounded-xl overflow-hidden shadow-lg card-hover group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                                     alt="Magnificent traditional Indian painting with cultural motifs and vibrant colors" 
+                                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="bg-white/90 text-red-500 p-2 rounded-full hover:bg-white hover:scale-110 transition-all" data-event="click:toggleWishlist">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-accent text-accent-foreground px-2 py-1 rounded-full text-xs font-medium">
+                                        Exclusive
+                                    </span>
+                                </div>
+                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <button class="gradient-button text-primary-foreground px-4 py-2 rounded-lg font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform" data-event="click:quickView">
+                                        Quick View
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs text-muted-foreground bg-muted px-2 py-1 rounded" data-mock="true">Paintings</span>
+                                    <div class="flex items-center text-sm text-accent">
+                                        <i class="fas fa-star mr-1"></i>
+                                        <span data-bind="product.rating">4.9</span>
+                                        <span class="text-muted-foreground ml-1" data-bind="product.reviewCount">(12)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-semibold mb-2 line-clamp-2" data-bind="product.name" data-mock="true">
+                                    Madhubani Folk Art Painting
+                                </h3>
+                                <p class="text-sm text-muted-foreground mb-3" data-bind="product.artisan" data-mock="true">
+                                    by Sunita Kumari
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-lg font-bold text-primary" data-bind="product.price" data-mock="true">₹3,799</span>
+                                        <span class="text-sm text-muted-foreground line-through" data-bind="product.originalPrice" data-mock="true">₹4,299</span>
+                                    </div>
+                                    <button class="bg-primary text-primary-foreground p-2 rounded-lg hover:bg-secondary transition-colors" data-event="click:addToCart">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Traditional Indian kitchenware with copper and brass utensils -->
+                        <div class="bg-background rounded-xl overflow-hidden shadow-lg card-hover group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                                     alt="Traditional Indian kitchenware featuring copper and brass utensils with cultural designs" 
+                                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="bg-white/90 text-red-500 p-2 rounded-full hover:bg-white hover:scale-110 transition-all" data-event="click:toggleWishlist">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <button class="gradient-button text-primary-foreground px-4 py-2 rounded-lg font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform" data-event="click:quickView">
+                                        Quick View
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs text-muted-foreground bg-muted px-2 py-1 rounded" data-mock="true">Kitchenware</span>
+                                    <div class="flex items-center text-sm text-accent">
+                                        <i class="fas fa-star mr-1"></i>
+                                        <span data-bind="product.rating">4.6</span>
+                                        <span class="text-muted-foreground ml-1" data-bind="product.reviewCount">(41)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-semibold mb-2 line-clamp-2" data-bind="product.name" data-mock="true">
+                                    Copper Water Bottle Set
+                                </h3>
+                                <p class="text-sm text-muted-foreground mb-3" data-bind="product.artisan" data-mock="true">
+                                    by Deepak Metalworks
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-lg font-bold text-primary" data-bind="product.price" data-mock="true">₹1,299</span>
+                                        <span class="text-sm text-muted-foreground line-through" data-bind="product.originalPrice" data-mock="true">₹1,699</span>
+                                    </div>
+                                    <button class="bg-primary text-primary-foreground p-2 rounded-lg hover:bg-secondary transition-colors" data-event="click:addToCart">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- @END_MAP )) -->
+                    </div>
+                    
+                    <!-- @COMPONENT: Pagination [load more and pagination controls] -->
+                    <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="text-sm text-muted-foreground">
+                            Showing 1-12 of 847 products
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="px-3 py-2 border border-border rounded-lg hover:bg-muted transition-colors" data-event="click:previousPage">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="px-3 py-2 bg-primary text-primary-foreground rounded-lg">1</button>
+                            <button class="px-3 py-2 border border-border rounded-lg hover:bg-muted transition-colors" data-event="click:goToPage">2</button>
+                            <button class="px-3 py-2 border border-border rounded-lg hover:bg-muted transition-colors" data-event="click:goToPage">3</button>
+                            <span class="px-2">...</span>
+                            <button class="px-3 py-2 border border-border rounded-lg hover:bg-muted transition-colors" data-event="click:goToPage">71</button>
+                            <button class="px-3 py-2 border border-border rounded-lg hover:bg-muted transition-colors" data-event="click:nextPage">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <button class="gradient-button text-primary-foreground px-6 py-2 rounded-lg font-medium" data-event="click:loadMore">
+                            Load More Products
+                        </button>
+                    </div>
+                    <!-- @END_COMPONENT: Pagination -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: FeaturedProducts -->
+
+    <!-- @COMPONENT: TestimonialsSection [customer reviews and ratings] -->
+    <section class="py-16 bg-gradient-to-br from-secondary/5 to-accent/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    What Our <span class="text-secondary">Customers Say</span>
+                </h2>
+                <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    Hear from satisfied customers who have experienced the beauty of authentic Indian crafts
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- @MAP: testimonials.map(testimonial => ( -->
+                <div class="bg-card rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="ml-2 text-sm text-muted-foreground" data-mock="true">5.0</span>
+                    </div>
+                    <p class="text-muted-foreground mb-6 italic" data-mock="true">
+                        "The Banarasi saree I ordered exceeded all my expectations. The craftsmanship is exquisite, 
+                        and you can feel the love and tradition woven into every thread. Absolutely stunning!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-primary-foreground font-bold">
+                            AS
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold" data-mock="true">Anita Sharma</h4>
+                            <p class="text-sm text-muted-foreground" data-mock="true">Mumbai, Maharashtra</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-card rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="ml-2 text-sm text-muted-foreground" data-mock="true">5.0</span>
+                    </div>
+                    <p class="text-muted-foreground mb-6 italic" data-mock="true">
+                        "I bought a beautiful pottery set for my new home. Each piece tells a story of India's 
+                        rich heritage. The quality is exceptional and the artisan's skill is truly remarkable."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-primary-foreground font-bold">
+                            RK
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold" data-mock="true">Rajesh Kumar</h4>
+                            <p class="text-sm text-muted-foreground" data-mock="true">Delhi, India</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-card rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="ml-2 text-sm text-muted-foreground" data-mock="true">5.0</span>
+                    </div>
+                    <p class="text-muted-foreground mb-6 italic" data-mock="true">
+                        "The jewelry piece I purchased is absolutely divine. The intricate work and attention to 
+                        detail is phenomenal. I've received so many compliments! Highly recommended."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-primary-foreground font-bold">
+                            PM
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold" data-mock="true">Priya Mehta</h4>
+                            <p class="text-sm text-muted-foreground" data-mock="true">Bangalore, Karnataka</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: TestimonialsSection -->
+
+    <!-- @COMPONENT: NewsletterSection [subscription form with cultural elements] -->
+    <section class="py-16 bg-gradient-to-r from-primary to-secondary">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 md:p-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+                    Stay Connected with Indian Heritage
+                </h2>
+                <p class="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+                    Get exclusive access to new collections, artisan stories, and special offers. 
+                    Join our community celebrating India's rich craft traditions.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                    <input type="email" 
+                           placeholder="Enter your email address" 
+                           class="flex-1 px-6 py-3 rounded-lg border-0 focus:ring-2 focus:ring-accent text-foreground" 
+                           data-implementation="Email validation and subscription">
+                    <button class="bg-accent text-accent-foreground px-8 py-3 rounded-lg font-semibold hover:bg-accent/90 transition-colors" data-event="click:subscribeNewsletter">
+                        Subscribe
+                    </button>
+                </div>
+                <div class="flex items-center justify-center space-x-6 mt-8 text-primary-foreground/80">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-gift"></i>
+                        <span class="text-sm">Exclusive offers</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="text-sm">Artisan stories</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-bell"></i>
+                        <span class="text-sm">New arrivals</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: NewsletterSection -->
+
+    <!-- @COMPONENT: Footer [comprehensive footer with links and information] -->
+    <footer class="bg-card border-t border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="lg:col-span-1">
+                    <h3 class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
+                        Desi Etsy
+                    </h3>
+                    <p class="text-muted-foreground mb-6">
+                        Celebrating India's rich heritage through authentic handmade crafts and connecting 
+                        skilled artisans with appreciative customers worldwide.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
+                            <i class="fab fa-pinterest text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Shop</h4>
+                    <ul class="space-y-3 text-muted-foreground">
+                        <li><a href="#" class="hover:text-primary transition-colors">All Categories</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Pottery</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Textiles</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Jewelry</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Home Decor</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Gift Ideas</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Support</h4>
+                    <ul class="space-y-3 text-muted-foreground">
+                        <li><a href="#" class="hover:text-primary transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Returns</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Size Guide</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Track Order</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Company</h4>
+                    <ul class="space-y-3 text-muted-foreground">
+                        <li><a href="#" class="hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Our Artisans</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Become a Seller</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Press</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-border mt-12 pt-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="text-sm text-muted-foreground">
+                        © 2024 Desi Etsy. All rights reserved. Made with ❤️ for Indian craftspeople.
+                    </div>
+                    <div class="flex items-center space-x-6 text-sm">
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">Terms of Service</a>
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <!-- @COMPONENT: CartDrawer [sliding cart panel] -->
+    <div class="fixed inset-0 bg-black/50 z-50 hidden" id="cartOverlay" data-implementation="Show/hide cart drawer">
+        <div class="absolute right-0 top-0 h-full w-full max-w-md bg-card shadow-2xl transform translate-x-full transition-transform duration-300" id="cartDrawer">
+            <div class="flex items-center justify-between p-6 border-b border-border">
+                <h3 class="text-xl font-bold">Shopping Cart</h3>
+                <button class="text-muted-foreground hover:text-foreground" data-event="click:closeCart">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6">
+                <!-- @MAP: cartItems.map(item => ( -->
+                <div class="flex items-center space-x-4 mb-6" data-mock="true">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" 
+                         alt="Cart item thumbnail" 
+                         class="w-16 h-16 object-cover rounded-lg">
+                    <div class="flex-1">
+                        <h4 class="font-medium">Traditional Blue Pottery Vase</h4>
+                        <p class="text-sm text-muted-foreground">by Ramesh Kumar</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <div class="flex items-center space-x-2">
+                                <button class="w-6 h-6 rounded-full border border-border flex items-center justify-center" data-event="click:decreaseQuantity">-</button>
+                                <span class="text-sm">1</span>
+                                <button class="w-6 h-6 rounded-full border border-border flex items-center justify-center" data-event="click:increaseQuantity">+</button>
+                            </div>
+                            <span class="font-semibold text-primary">₹2,499</span>
+                        </div>
+                    </div>
+                    <button class="text-destructive hover:text-destructive/80" data-event="click:removeItem">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+            <div class="border-t border-border p-6">
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between text-sm">
+                        <span>Subtotal:</span>
+                        <span data-bind="cart.subtotal">₹2,499</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span>Shipping:</span>
+                        <span class="text-green-600">Free</span>
+                    </div>
+                    <div class="flex justify-between font-semibold text-lg border-t border-border pt-3">
+                        <span>Total:</span>
+                        <span class="text-primary" data-bind="cart.total">₹2,499</span>
+                    </div>
+                </div>
+                <button class="w-full gradient-button text-primary-foreground py-3 rounded-lg font-semibold mb-3" data-event="click:proceedToCheckout">
+                    Proceed to Checkout
+                </button>
+                <button class="w-full border border-border text-muted-foreground py-3 rounded-lg hover:bg-muted transition-colors" data-event="click:continueShopping">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: CartDrawer -->
+
+    <!-- @COMPONENT: LoginModal [authentication modal] -->
+    <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden" id="loginModal" data-implementation="Show/hide login modal">
+        <div class="bg-card rounded-2xl p-8 w-full max-w-md mx-4">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold mb-2">Welcome Back</h3>
+                <p class="text-muted-foreground">Sign in to your account to continue</p>
+            </div>
+            <form class="space-y-4">
+                <div>
+                    <input type="email" placeholder="Email address" class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring">
+                </div>
+                <div>
+                    <input type="password" placeholder="Password" class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring">
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="rounded border-border text-primary focus:ring-primary">
+                        <span class="ml-2 text-sm">Remember me</span>
+                    </label>
+                    <a href="#" class="text-sm text-primary hover:underline">Forgot password?</a>
+                </div>
+                <button type="submit" class="w-full gradient-button text-primary-foreground py-3 rounded-lg font-semibold" data-event="click:signIn">
+                    Sign In
+                </button>
+            </form>
+            <div class="mt-6">
+                <div class="text-center text-sm text-muted-foreground mb-4">Or continue with</div>
+                <div class="grid grid-cols-2 gap-3">
+                    <button class="border border-border py-2 px-4 rounded-lg hover:bg-muted transition-colors flex items-center justify-center" data-event="click:signInWithGoogle">
+                        <i class="fab fa-google mr-2"></i>Google
+                    </button>
+                    <button class="border border-border py-2 px-4 rounded-lg hover:bg-muted transition-colors flex items-center justify-center" data-event="click:signInWithFacebook">
+                        <i class="fab fa-facebook mr-2"></i>Facebook
+                    </button>
+                </div>
+            </div>
+            <div class="text-center mt-6 text-sm">
+                <span class="text-muted-foreground">Don't have an account? </span>
+                <button class="text-primary hover:underline" data-event="click:showRegister">Sign up</button>
+            </div>
+            <button class="absolute top-4 right-4 text-muted-foreground hover:text-foreground" data-event="click:closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: LoginModal -->
+
+    <script>
+        // TODO: Implement business logic, API calls, and state management
+        (function() {
+            // Simple cart drawer toggle functionality for demonstration
+            const cartButton = document.querySelector('[data-event="click:toggleCart"]');
+            const cartOverlay = document.getElementById('cartOverlay');
+            const cartDrawer = document.getElementById('cartDrawer');
+            const closeCartButton = document.querySelector('[data-event="click:closeCart"]');
+
+            if (cartButton && cartOverlay && cartDrawer) {
+                cartButton.addEventListener('click', function() {
+                    cartOverlay.classList.remove('hidden');
+                    setTimeout(() => {
+                        cartDrawer.classList.remove('translate-x-full');
+                    }, 10);
+                });
+
+                closeCartButton?.addEventListener('click', function() {
+                    cartDrawer.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        cartOverlay.classList.add('hidden');
+                    }, 300);
+                });
+
+                cartOverlay.addEventListener('click', function(e) {
+                    if (e.target === cartOverlay) {
+                        cartDrawer.classList.add('translate-x-full');
+                        setTimeout(() => {
+                            cartOverlay.classList.add('hidden');
+                        }, 300);
+                    }
+                });
+            }
+
+            // Simple modal toggle functionality for demonstration
+            const loginButton = document.querySelector('[data-event="click:showLoginModal"]');
+            const loginModal = document.getElementById('loginModal');
+            const closeModalButton = document.querySelector('[data-event="click:closeModal"]');
+
+            if (loginButton && loginModal) {
+                loginButton.addEventListener('click', function() {
+                    loginModal.classList.remove('hidden');
+                });
+
+                closeModalButton?.addEventListener('click', function() {
+                    loginModal.classList.add('hidden');
+                });
+
+                loginModal.addEventListener('click', function(e) {
+                    if (e.target === loginModal) {
+                        loginModal.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Add to cart animation demonstration
+            document.querySelectorAll('[data-event="click:addToCart"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = button.innerHTML;
+                    button.innerHTML = '<i class="fas fa-check"></i>';
+                    button.classList.add('bg-green-500');
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.classList.remove('bg-green-500');
+                    }, 1000);
+                });
+            });
+
+            // Wishlist toggle demonstration
+            document.querySelectorAll('[data-event="click:toggleWishlist"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const icon = button.querySelector('i');
+                    if (icon.classList.contains('far')) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        button.classList.add('text-red-500');
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        button.classList.remove('text-red-500');
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
